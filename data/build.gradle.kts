@@ -31,26 +31,17 @@ kotlin {
     // A step-by-step guide on how to include this library in an XCode
     // project can be found here:
     // https://developer.android.com/kotlin/multiplatform/migrate
-    val xcfName = "dataKit"
-
-    iosX64 {
-        binaries.framework {
-            baseName = xcfName
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+            iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "data"
+            isStatic = true
         }
     }
-
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
+    jvm()
     // Source set declarations.
     // Declaring a target automatically creates a source set with the same name. By default, the
     // Kotlin Gradle Plugin creates additional source sets that depend on each other, since it is
@@ -61,12 +52,18 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
+                implementation(project(":domain"))
+
+                implementation(libs.kotlinx.coroutines.core)
+
             }
         }
 
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
+
+
             }
         }
 
@@ -75,6 +72,8 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
+                implementation(libs.kotlinx.coroutines.android)
+
             }
         }
 
