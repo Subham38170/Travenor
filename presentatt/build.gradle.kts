@@ -10,7 +10,7 @@ kotlin {
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     androidLibrary {
-        namespace = "org.subham.domain"
+        namespace = "org.subham.presentation"
         compileSdk = 36
         minSdk = 26
 
@@ -31,17 +31,25 @@ kotlin {
     // A step-by-step guide on how to include this library in an XCode
     // project can be found here:
     // https://developer.android.com/kotlin/multiplatform/migrate
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "domain"
-            isStatic = true
+    val xcfName = "presentattKit"
+
+    iosX64 {
+        binaries.framework {
+            baseName = xcfName
         }
     }
 
-    jvm()
+    iosArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
 
     // Source set declarations.
     // Declaring a target automatically creates a source set with the same name. By default, the
@@ -53,13 +61,6 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
-                //Coroutines
-                implementation(libs.kotlinx.coroutines.core)
-
-                //Koin
-                implementation(libs.koin.core.v356)
-                implementation(libs.koin.compose.v356)
-                implementation(libs.koin.compose.viewmodel)
             }
         }
 
@@ -74,9 +75,6 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
-                implementation(libs.kotlinx.coroutines.android)
-                implementation(libs.koin.android)
-
             }
         }
 

@@ -56,6 +56,11 @@ kotlin {
 
                 implementation(libs.kotlinx.coroutines.core)
 
+
+                //Koin
+                implementation(libs.koin.core.v356)
+                implementation(libs.koin.compose.v356)
+                implementation(libs.koin.compose.viewmodel)
             }
         }
 
@@ -73,6 +78,7 @@ kotlin {
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
                 implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.koin.android)
 
             }
         }

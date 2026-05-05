@@ -46,6 +46,11 @@ kotlin {
             implementation(project(":domain"))
             implementation(project(":data"))
             implementation(project(":presentation"))
+
+            //Koin
+            implementation(libs.koin.core.v356)
+            implementation(libs.koin.compose.v356)
+            implementation(libs.koin.compose.viewmodel)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -53,6 +58,10 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+        }
+        androidMain.dependencies {
+            implementation(libs.koin.android)
+
         }
     }
 }

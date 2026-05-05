@@ -44,7 +44,7 @@ kotlin {
 
     // Source set declarations.
     // Declaring a target automatically creates a source set with the same name. By default, the
-    // Kotlin Gradle Plugin creates additional source sets that depend on each other, since it is
+    // Kotlin Gradle Plugin crees additional source sets that depend on each other, since it is
     // common to share sources between related targets.
     // See: https://kotlinlang.org/docs/multiplatform-hierarchy.html
     sourceSets {
@@ -56,6 +56,11 @@ kotlin {
                 implementation(project(":domain"))
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.androidx.lifecycle.viewmodelCompose)
+
+                //Koin
+                implementation(libs.koin.core.v356)
+                implementation(libs.koin.compose.v356)
+                implementation(libs.koin.compose.viewmodel)
             }
         }
 
@@ -70,6 +75,8 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
+                implementation(libs.koin.android)
+
             }
         }
 
