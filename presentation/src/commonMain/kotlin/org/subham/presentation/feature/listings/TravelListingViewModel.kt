@@ -1,4 +1,4 @@
-package org.subham.presentation.listings
+package org.subham.presentation.feature.listings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

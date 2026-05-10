@@ -17,11 +17,15 @@ koinCore = "4.2.1"
 koinCoreVersion = "4.2.1"
 kotlin = "2.2.10"
 kotlinx-coroutines = "1.10.2"
+kotlinxSerializationJson = "1.11.0"
+ktorClientCore = "3.4.3"
 material3 = "1.10.0-alpha05"
 kotlinStdlib = "2.2.10"
+material3Version = "1.9.0"
 runner = "1.7.0"
 core = "1.7.0"
-
+materialIconExtended = "1.7.3"
+slf4jSimple = "2.0.17"
 
 
 [libraries]
@@ -55,7 +59,18 @@ kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-s
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
-
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientCore" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClientCore" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorClientCore" }
+ktor-client-java = { module = "io.ktor:ktor-client-java", version.ref = "ktorClientCore" }
+ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktorClientCore" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientCore" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientCore" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientCore" }
+material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended",version.ref = "materialIconExtended"}
+material3-v190 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3Version" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jSimple" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

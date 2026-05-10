@@ -7,8 +7,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.subham.data.datasource.DummyDataSource
 import org.subham.data.repository.ListingRepositoryImpl
 import org.subham.domain.usecase.GetAllListingUseCase
-import org.subham.presentation.listings.TravelListingViewModel
-import org.subham.travenor.listings.TravelListingScreen
+import org.subham.presentation.feature.listings.TravelListingViewModel
+import org.subham.travenor.ui.signin.LoginScreen
+import org.subham.travenor.ui.signup.SignUpScreen
 
 @Composable
 @Preview
@@ -18,7 +19,6 @@ fun App() {
 
     }
     MaterialTheme {
-
-        TravelListingScreen(travelListingViewModel)
+        SignUpScreen()
     }
 }

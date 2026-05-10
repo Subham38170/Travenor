@@ -51,6 +51,10 @@ kotlin {
             implementation(libs.koin.core.v356)
             implementation(libs.koin.compose.v356)
             implementation(libs.koin.compose.viewmodel)
+
+
+            implementation(libs.material.icons.extended)
+            implementation(libs.material3.v190)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -58,6 +62,8 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+
+            implementation(libs.slf4j.simple)
         }
         androidMain.dependencies {
             implementation(libs.koin.android)

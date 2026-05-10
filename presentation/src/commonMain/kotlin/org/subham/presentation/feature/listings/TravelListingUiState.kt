@@ -1,4 +1,4 @@
-package org.subham.presentation.listings
+package org.subham.presentation.feature.listings
 
 import org.subham.domain.model.TravelListing
 

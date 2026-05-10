@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.androidLint)
+
+
 }
 
 kotlin {
@@ -60,6 +62,9 @@ kotlin {
                 implementation(libs.koin.core.v356)
                 implementation(libs.koin.compose.v356)
                 implementation(libs.koin.compose.viewmodel)
+
+
+
             }
         }
 

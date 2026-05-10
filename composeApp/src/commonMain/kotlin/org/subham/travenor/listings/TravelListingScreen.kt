@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.subham.domain.model.TravelListing
-import org.subham.presentation.listings.TravelListingViewModel
+import org.subham.presentation.feature.listings.TravelListingViewModel
 
 @Composable
 fun TravelListingScreen(
