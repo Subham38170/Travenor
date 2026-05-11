@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.koin.core.logger.Logger
 import org.subham.domain.usecase.GetAllListingUseCase
 
 class TravelListingViewModel(
@@ -26,12 +27,11 @@ class TravelListingViewModel(
 
             try {
 
-                getAllListingUseCase.execute().collect { listings ->
+                getAllListingUseCase.execute().let { listings ->
                     _uiState.update {
                         it.copy(
                             listings = listings,
-                            isLoading = false,
-                            errorMessage = null
+                            isLoading = false
                         )
                     }
                 }

@@ -13,7 +13,6 @@ import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
-import org.subham.data.datasource.DummyDataSource
 import org.subham.data.datasource.RemoteDataSource
 import org.subham.data.repository.ListingRepositoryImpl
 import org.subham.data.repository.UserRepositoryImpl
@@ -22,7 +21,6 @@ import org.subham.domain.repository.UserRepository
 
 val dataModule = module {
 
-    single { DummyDataSource() }
 
     single { RemoteDataSource(get(), get()) }
     single<ListingRepository> {

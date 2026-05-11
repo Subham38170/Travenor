@@ -2,21 +2,30 @@ package org.subham.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.subham.data.datasource.DummyDataSource
+import org.subham.data.datasource.RemoteDataSource
 import org.subham.data.mappers.TravelListingMapper
 import org.subham.domain.model.TravelListing
 import org.subham.domain.repository.ListingRepository
 
 class ListingRepositoryImpl(
-    private val datasource: DummyDataSource
+    private val dataSource: RemoteDataSource
 ): ListingRepository {
-    override fun getAllListings(): Flow<List<TravelListing>> {
-        return datasource.listings.map {
-            TravelListingMapper.toDomain(it)
+    override suspend fun getAllListings(): Result<List<TravelListing>> {
+        return try{
+
+            val response = dataSource.getAllListings()
+            if (response.isSuccess) {
+                val listings = response.getOrNull()!!
+                val models = TravelListingMapper.toDomain(listings)
+                Result.success(models)
+            }
+            else{
+                Result.failure(Exception("Something went wrong ${response.exceptionOrNull()}"))
+            }
+        }catch (e: Exception){
+            Result.failure(e)
         }
     }
 
-    override fun getListingById(): Flow<TravelListing> {
-        TODO("Not yet implemented")
-    }
+
 }

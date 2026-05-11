@@ -53,8 +53,15 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
 
 
+            //Material3 Icons
             implementation(libs.material.icons.extended)
             implementation(libs.material3.v190)
+
+            //Coil
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
+
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

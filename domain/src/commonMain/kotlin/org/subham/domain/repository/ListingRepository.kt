@@ -5,6 +5,5 @@ import org.subham.domain.model.TravelListing
 
 interface ListingRepository {
 
-    fun getAllListings(): Flow<List<TravelListing>>
-    fun getListingById(): Flow<TravelListing>
+    suspend fun getAllListings(): Result<List<TravelListing>>
 }
