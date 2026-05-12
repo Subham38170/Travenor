@@ -19,14 +19,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
 import org.subham.presentation.feature.signin.SignInViewModel
+import org.subham.presentation.feature.signup.AuthNavigation
+import org.subham.travenor.navigation.NavRoutes
 import org.subham.travenor.widgets.TravenorCirclleImageButton
 import org.subham.travenor.widgets.TravenorPasswordTextField
 import org.subham.travenor.widgets.TravenorSpacer
@@ -36,21 +41,43 @@ import org.subham.travenor.widgets.TravenorTextField
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun LoginScreen(
-    viewModel: SignInViewModel = koinViewModel<SignInViewModel>()
+    viewModel: SignInViewModel = koinViewModel<SignInViewModel>(),
+    backstack: SnapshotStateList<NavRoutes>
 ) {
     val uiState = viewModel.uiState.collectAsState()
     val email = viewModel.email.collectAsState()
     val password = viewModel.password.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.navigationState.collectLatest {
+            when (it) {
+
+                is AuthNavigation.ToSignUp -> {
+                    backstack.apply {
+                        clear()
+                        add(NavRoutes.SignUp)
+                    }
+                }
+
+                is AuthNavigation.ToListing -> {
+                    backstack.apply {
+                        clear()
+                        add(NavRoutes.Listing)
+                    }
+                }
+
+                else -> {
+
+                }
+            }
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
     ) {
-        uiState.value.user?.let {
-            Text(
-                text = it.toString()
-            )
-        }
+
         TravenorSpacer(
             size = 16.dp
         )
@@ -174,7 +201,9 @@ fun LoginScreen(
                     color = MaterialTheme.colorScheme.onSurface.copy(0.7f)
                 )
                 TextButton(
-                    onClick = {}
+                    onClick = {
+                        viewModel.onSignUpClick()
+                    }
                 ) {
                     Text(
                         text = "Sign Up",

@@ -20,9 +20,11 @@ kotlin = "2.2.10"
 kotlinx-coroutines = "1.10.2"
 kotlinxSerializationJson = "1.11.0"
 ktorClientCore = "3.4.3"
+lifecycleViewmodelCompose = "2.10.0"
 material3 = "1.10.0-alpha05"
 kotlinStdlib = "2.2.10"
 material3Version = "1.9.0"
+navigation3Ui = "1.1.1"
 runner = "1.7.0"
 core = "1.7.0"
 materialIconExtended = "1.7.3"
@@ -34,6 +36,7 @@ coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCo
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coilCompose" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCore" }
+koin-compose-navigation3 = { module = "io.insert-koin:koin-compose-navigation3", version.ref = "koinCompose" }
 koin-compose-v356 = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
@@ -71,8 +74,11 @@ ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktorClientC
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientCore" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientCore" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientCore" }
+lifecycle-viewmodel-compose-v2100alpha05 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+lifecycle-viewmodel-navigation3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
 material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended",version.ref = "materialIconExtended"}
 material3-v190 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3Version" }
+navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3Ui" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jSimple" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

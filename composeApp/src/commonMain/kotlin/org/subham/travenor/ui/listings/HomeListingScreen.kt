@@ -2,6 +2,7 @@ package org.subham.travenor.ui.listings
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -23,6 +24,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,6 +41,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.subham.domain.model.TravelListing
 import org.subham.presentation.feature.listings.TravelListingViewModel
+import org.subham.travenor.navigation.NavRoutes
 import org.subham.travenor.theme.Orange
 import org.subham.travenor.theme.PrimaryBlue
 import org.subham.travenor.widgets.MultiHighlightedText
@@ -49,18 +52,14 @@ import travenor.composeapp.generated.resources.default_listing_img
 import travenor.composeapp.generated.resources.notifications
 import travenor.composeapp.generated.resources.user
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-private fun pvw() {
-    HomeListingScreen()
-}
 
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeListingScreen(
-    viewModel: TravelListingViewModel = koinViewModel<TravelListingViewModel>()
+    viewModel: TravelListingViewModel = koinViewModel<TravelListingViewModel>(),
+    backstack: SnapshotStateList<NavRoutes>
 ) {
 
     val uiState = viewModel.uiState.collectAsState()
@@ -172,7 +171,12 @@ fun HomeListingScreen(
                 ) {
                     items(listings) { data ->
                         DestinationCard(
-                            model = data
+                            model = data,
+                            onItemClick = {
+                                data.id?.let {
+                                    backstack.add(NavRoutes.ListingDetails(it))
+                                }
+                            }
                         )
                     }
                 }
@@ -185,12 +189,14 @@ fun HomeListingScreen(
 
 @Composable
 fun DestinationCard(
-    model: TravelListing
+    model: TravelListing,
+    onItemClick: ()-> Unit
 ) {
     Column(
         modifier = Modifier
             .background(Color.Transparent, shape = RoundedCornerShape(16.dp))
-            .width(250.dp),
+            .width(250.dp)
+            .clickable(onClick = onItemClick),
         verticalArrangement = Arrangement.Center
     ) {
 

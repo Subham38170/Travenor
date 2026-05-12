@@ -61,7 +61,11 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor3)
 
-
+            //Navigation 3
+            implementation(libs.navigation3.ui)
+            implementation(libs.lifecycle.viewmodel.navigation3)
+            implementation(libs.lifecycle.viewmodel.compose.v2100alpha05)
+            implementation(libs.koin.compose.navigation3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
