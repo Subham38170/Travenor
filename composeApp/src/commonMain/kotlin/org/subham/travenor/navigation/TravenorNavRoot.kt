@@ -13,8 +13,13 @@ import org.subham.travenor.ui.signin.LoginScreen
 import org.subham.travenor.ui.signup.SignUpScreen
 
 @Composable
-fun TravenorNavRoot() {
-    val backstack = rememberSaveable { mutableStateListOf<NavRoutes>(NavRoutes.Login) }
+fun TravenorNavRoot(
+    authToken: String?
+) {
+
+    val backstack =
+        rememberSaveable { mutableStateListOf<NavRoutes>(if (authToken == null) NavRoutes.Login else NavRoutes.Listing) }
+
 
     NavDisplay(
         backStack = backstack,
@@ -34,7 +39,7 @@ fun TravenorNavRoot() {
                     backstack = backstack
                 )
             }
-            entry<NavRoutes.ListingDetails>{
+            entry<NavRoutes.ListingDetails> {
                 TravelItemDetailsScreen(
                     backStack = backstack,
                     itemId = it.id

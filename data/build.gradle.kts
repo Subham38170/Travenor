@@ -72,6 +72,12 @@ kotlin {
                 //Serialization
                 implementation(libs.kotlinx.serialization.json)
 
+                //Data Store
+                // DataStore library
+                implementation(libs.androidx.datastore)
+                // The Preferences DataStore library
+                implementation(libs.androidx.datastore.preferences)
+
             }
         }
 

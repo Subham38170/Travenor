@@ -1,5 +1,7 @@
 package org.subham.data.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -13,9 +15,13 @@ import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
+import org.subham.data.datasource.CacheDataSource
 import org.subham.data.datasource.RemoteDataSource
+import org.subham.data.datasource.createDataStore
+import org.subham.data.repository.CacheRepositoryImpl
 import org.subham.data.repository.ListingRepositoryImpl
 import org.subham.data.repository.UserRepositoryImpl
+import org.subham.domain.repository.CacheRepository
 import org.subham.domain.repository.ListingRepository
 import org.subham.domain.repository.UserRepository
 
@@ -23,13 +29,19 @@ val dataModule = module {
 
 
     single { RemoteDataSource(get(), get()) }
+    single { CacheDataSource(get()) }
+
+    single<DataStore<Preferences>> {
+        createDataStore(get())
+    }
     single<ListingRepository> {
         ListingRepositoryImpl(get())
     }
 
     single<UserRepository> {
-        UserRepositoryImpl(get())
+        UserRepositoryImpl(get(),get())
     }
+    single<CacheRepository>{ CacheRepositoryImpl(get()) }
 
     single<HttpClient> {
         HttpClient {

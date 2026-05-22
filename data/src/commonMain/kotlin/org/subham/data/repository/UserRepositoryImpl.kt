@@ -1,5 +1,6 @@
 package org.subham.data.repository
 
+import org.subham.data.datasource.CacheDataSource
 import org.subham.data.datasource.RemoteDataSource
 import org.subham.data.mappers.RegisterRequestMapper
 import org.subham.data.mappers.UserMapper
@@ -9,7 +10,8 @@ import org.subham.domain.model.UserModel
 import org.subham.domain.repository.UserRepository
 
 class UserRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
+    private val cacheDataSource: CacheDataSource
 ) : UserRepository {
     override suspend fun login(
         email: String,
@@ -22,6 +24,7 @@ class UserRepositoryImpl(
             if (response.isSuccess) {
                 val userDto = response.getOrNull()!!
                 val userModel = UserMapper.toDomain(userDto.user)
+                cacheDataSource.saveAuthToken(userDto.token)
                 Result.success(userModel)
             } else {
                 Result.failure(Exception("Login failed with status code : ${response.exceptionOrNull()}"))
@@ -37,7 +40,9 @@ class UserRepositoryImpl(
             if(response.isSuccess){
                 val userDto = response.getOrNull()!!
                 val userModel = UserMapper.toDomain(userDto.user)
+                cacheDataSource.saveAuthToken(userDto.token)
                 Result.success(userModel)
+
             }
             else{
                 Result.failure(Exception("SignUp failed with status code : ${response.exceptionOrNull()}"))

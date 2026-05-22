@@ -66,6 +66,13 @@ kotlin {
             implementation(libs.lifecycle.viewmodel.navigation3)
             implementation(libs.lifecycle.viewmodel.compose.v2100alpha05)
             implementation(libs.koin.compose.navigation3)
+
+
+            // DataStore library
+            implementation(libs.androidx.datastore)
+            // The Preferences DataStore library
+            implementation(libs.androidx.datastore.preferences)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
