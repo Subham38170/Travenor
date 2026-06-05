@@ -2,6 +2,8 @@ package org.subham.presentation.feature.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -43,7 +45,7 @@ class SignUpViewModel(
     fun onConfirmPasswordChange(newPassword: String) = _confirmPassword.update { newPassword }
 
     fun signUp() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO){
             if (confirmPassword.value != password.value) {
                 _uiState.update {
                     it.copy(

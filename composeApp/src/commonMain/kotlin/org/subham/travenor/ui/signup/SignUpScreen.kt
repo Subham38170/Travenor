@@ -30,7 +30,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.subham.presentation.feature.signup.AuthNavigation
 import org.subham.presentation.feature.signup.SignUpViewModel
 import org.subham.travenor.navigation.NavRoutes
-import org.subham.travenor.widgets.TravenorCirclleImageButton
+import org.subham.travenor.widgets.TravenorCircleImageButton
 import org.subham.travenor.widgets.TravenorPasswordTextField
 import org.subham.travenor.widgets.TravenorSpacer
 import org.subham.travenor.widgets.TravenorTextField
@@ -80,7 +80,7 @@ fun SignUpScreen(
             size = 16.dp
         )
 
-        TravenorCirclleImageButton(
+        TravenorCircleImageButton(
             icon = Icons.AutoMirrored.Filled.ArrowBack,
             contentDescription = "Arrow Back",
             onClick = {}

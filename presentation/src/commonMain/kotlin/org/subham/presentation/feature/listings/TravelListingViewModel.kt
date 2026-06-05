@@ -2,6 +2,8 @@ package org.subham.presentation.feature.listings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -22,7 +24,7 @@ class TravelListingViewModel(
     }
 
     private fun loadTravelListings() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO){
             _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
 
             try {

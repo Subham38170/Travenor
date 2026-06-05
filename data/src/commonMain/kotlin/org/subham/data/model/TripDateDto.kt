@@ -3,7 +3,7 @@ package org.subham.data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TripDate(
+data class TripDateDto(
     val availableSpots: Int?,
     val createdAt: String?,
     val currentBookings: Int?,

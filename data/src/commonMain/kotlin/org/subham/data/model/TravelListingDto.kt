@@ -23,7 +23,7 @@ data class TravelListingDto(
     val rating: Float?,
     val reviewCount: Int?,
     val title: String?,
-    val tripDates: List<TripDate?>?,
+    val tripDates: List<TripDateDto?>?,
     val updatedAt: String?,
     val vendorId: String?
 )

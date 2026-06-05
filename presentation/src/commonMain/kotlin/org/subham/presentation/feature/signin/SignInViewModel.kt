@@ -2,6 +2,8 @@ package org.subham.presentation.feature.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -34,7 +36,7 @@ class SignInViewModel(
 
 
     fun signIn() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO){
             val result = loginUseCase.execute(email.value, password.value)
             result.onSuccess { user ->
                 _uiState.update {

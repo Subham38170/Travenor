@@ -27,5 +27,22 @@ class ListingRepositoryImpl(
         }
     }
 
+    override suspend fun getListingById(id: String): Result<TravelListing> {
+        return try {
+
+            val response = dataSource.getListingById(id)
+            if(response.isSuccess){
+                val listing = response.getOrNull()!!
+                val model = TravelListingMapper.toDomain(listing)
+                Result.success(model)
+            }
+            else{
+                Result.failure(Exception("Something went wrong ${response.exceptionOrNull()}"))
+            }
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+    }
+
 
 }

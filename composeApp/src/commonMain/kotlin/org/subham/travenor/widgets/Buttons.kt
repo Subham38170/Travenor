@@ -1,5 +1,6 @@
 package org.subham.travenor.widgets
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -14,7 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TravenorCirclleImageButton(
+fun TravenorCircleImageButton(
     onClick: () -> Unit,
     icon: ImageVector,
     contentDescription: String,
@@ -40,7 +41,7 @@ fun TravenorCirclleImageButton(
 }
 
 @Composable
-fun TravenorCirclleImageButton(
+fun TravenorCircleImageButton(
     onClick: () -> Unit,
     icon: Painter,
     contentDescription: String,
@@ -54,12 +55,14 @@ fun TravenorCirclleImageButton(
         modifier = modifier,
         shape = CircleShape
     ) {
-        Icon(
+
+        Image(
             painter = icon,
-            contentDescription = contentDescription,
-            modifier = Modifier
-                .padding(8.dp)
+            contentDescription = "Image Button",
+            modifier= Modifier
+                .padding(4.dp)
                 .size(48.dp)
+
         )
     }
 

@@ -14,7 +14,7 @@ val presentationModule = module {
     viewModel { SignInViewModel(get()) }
     viewModel { SignUpViewModel(get()) }
 
-    viewModel { TravelListingDetailsViewModel(get()) }
+    viewModel { TravelListingDetailsViewModel(get(),get()) }
 
     viewModel { AppViewModel(get()) }
 }
